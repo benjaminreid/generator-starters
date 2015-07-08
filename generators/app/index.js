@@ -27,6 +27,11 @@ module.exports = yeoman.generators.Base.extend({
       name: 'bowerDependencies',
       message: 'Would you like any of these dependencies?',
       choices: ['jquery', 'normalize.css']
+    }, {
+      type: 'confirm',
+      name: 'gulp',
+      message: 'Would you like to use Gulp?',
+      default: false
     }];
 
     this.prompt(prompts, function (props) {
@@ -67,6 +72,13 @@ module.exports = yeoman.generators.Base.extend({
         description: this.props.description
       }
     );
+
+    if (this.props.gulp === true) {
+      this.fs.copy(
+        this.templatePath('_gulpfile.js'),
+        this.destinationPath('gulpfile.js')
+      );
+    }
   },
 
   install: function () {
