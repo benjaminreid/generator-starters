@@ -22,6 +22,11 @@ module.exports = yeoman.generators.Base.extend({
       name: 'description',
       message: 'Describe your project?',
       default: 'A simple yo generator'
+    }, {
+      type: 'checkbox',
+      name: 'bowerDependencies',
+      message: 'Would you like any of these dependencies?',
+      choices: ['jquery', 'normalize.css']
     }];
 
     this.prompt(prompts, function (props) {
@@ -65,6 +70,6 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    this.installDependencies();
+    this.bowerInstall(this.props.bowerDependencies, { save: true });
   }
 });
