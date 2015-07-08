@@ -23,3 +23,18 @@ describe('starters:app', function () {
     ]);
   });
 });
+
+describe('starters:gulp', function () {
+  before(function (done) {
+    helpers.run(path.join(__dirname, '../generators/app'))
+      .withOptions({ skipInstall: true })
+      .withPrompts({ gulp: true })
+      .on('end', done);
+  });
+
+  it('creates a gulpfile', function () {
+    assert.file([
+      'gulpfile.js'
+    ]);
+  });
+});
