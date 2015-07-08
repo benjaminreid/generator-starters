@@ -32,6 +32,12 @@ module.exports = yeoman.generators.Base.extend({
       this.templatePath('_package.json'),
       this.destinationPath('package.json')
     );
+
+    this.fs.copy(
+      this.templatePath('gitignore'),
+      this.destinationPath('.gitignore')
+    );
+
     this.fs.copyTpl(
       this.templatePath('_bower.json'),
       this.destinationPath('bower.json'),
