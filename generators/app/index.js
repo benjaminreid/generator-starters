@@ -32,6 +32,14 @@ module.exports = yeoman.generators.Base.extend({
       name: 'gulp',
       message: 'Would you like to use Gulp?',
       default: false
+    }, {
+      type: 'confirm',
+      name: 'useSass',
+      message: 'Would you like to have Sass compilation?',
+      default: false,
+      when: function(answers) {
+        return answers.gulp;
+      }
     }];
 
     this.prompt(prompts, function (props) {
@@ -86,6 +94,10 @@ module.exports = yeoman.generators.Base.extend({
 
     if (this.props.gulp === true) {
       this.npmInstall(['gulp'], { saveDev: true });
+
+      if (this.props.useSass === true) {
+        this.npmInstall(['gulp-sass'], { saveDev: true });
+      }
     }
   }
 });
