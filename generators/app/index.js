@@ -13,10 +13,20 @@ module.exports = yeoman.generators.Base.extend({
     ));
 
     var prompts = [{
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
+      type: 'input',
+      name: 'name',
+      message: 'What is the name of your project?',
+      default: this.appname
+    }, {
+      type: 'input',
+      name: 'description',
+      message: 'Describe your project?',
+      default: 'A simple yo generator'
+    }, {
+      type: 'checkbox',
+      name: 'bowerDependencies',
+      message: 'Would you like any of these dependencies?',
+      choices: ['jquery', 'normalize.css']
     }];
 
     this.prompt(prompts, function (props) {
@@ -27,31 +37,39 @@ module.exports = yeoman.generators.Base.extend({
     }.bind(this));
   },
 
-  writing: {
-    app: function () {
-      this.fs.copy(
-        this.templatePath('_package.json'),
-        this.destinationPath('package.json')
-      );
-      this.fs.copy(
-        this.templatePath('_bower.json'),
-        this.destinationPath('bower.json')
-      );
-    },
+  writing: function() {
+    this.fs.copy(
+      this.templatePath('_package.json'),
+      this.destinationPath('package.json')
+    );
 
-    projectfiles: function () {
-      this.fs.copy(
-        this.templatePath('editorconfig'),
-        this.destinationPath('.editorconfig')
-      );
-      this.fs.copy(
-        this.templatePath('jshintrc'),
-        this.destinationPath('.jshintrc')
-      );
-    }
+    this.fs.copy(
+      this.templatePath('gitignore'),
+      this.destinationPath('.gitignore')
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('_bower.json'),
+      this.destinationPath('bower.json'),
+      { name: this.props.name }
+    );
+
+    this.fs.copy(
+      this.templatePath('bowerrc'),
+      this.destinationPath('.bowerrc')
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('_README.md'),
+      this.destinationPath('README.md'),
+      {
+        name: this.props.name,
+        description: this.props.description
+      }
+    );
   },
 
   install: function () {
-    this.installDependencies();
+    this.bowerInstall(this.props.bowerDependencies, { save: true });
   }
 });
