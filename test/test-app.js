@@ -17,8 +17,9 @@ describe('starters:app', function () {
     assert.file([
       'bower.json',
       'package.json',
-      '.editorconfig',
-      '.jshintrc'
+      'README.md',
+      '.bowerrc',
+      '.gitignore',
     ]);
   });
 });
