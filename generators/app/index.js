@@ -83,5 +83,9 @@ module.exports = yeoman.generators.Base.extend({
 
   install: function () {
     this.bowerInstall(this.props.bowerDependencies, { save: true });
+
+    if (this.props.gulp === true) {
+      this.npmInstall(['gulp'], { saveDev: true });
+    }
   }
 });
