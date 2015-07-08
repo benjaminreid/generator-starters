@@ -45,3 +45,6 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 ## License
 
 MIT
+
+## TL;DR
+![Starters](http://media.giphy.com/media/haBeggedmenEA/giphy.gif)
