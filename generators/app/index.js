@@ -82,9 +82,10 @@ module.exports = yeoman.generators.Base.extend({
     );
 
     if (this.props.gulp === true) {
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('_gulpfile.js'),
-        this.destinationPath('gulpfile.js')
+        this.destinationPath('gulpfile.js'),
+        { sass: this.props.useSass }
       );
     }
   },
