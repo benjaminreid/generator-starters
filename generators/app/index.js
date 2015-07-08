@@ -43,6 +43,11 @@ module.exports = yeoman.generators.Base.extend({
       this.destinationPath('bower.json'),
       { name: this.props.name }
     );
+
+    this.fs.copy(
+      this.templatePath('bowerrc'),
+      this.destinationPath('.bowerrc')
+    );
   },
 
   install: function () {
