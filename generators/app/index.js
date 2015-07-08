@@ -17,6 +17,11 @@ module.exports = yeoman.generators.Base.extend({
       name: 'name',
       message: 'What is the name of your project?',
       default: this.appname
+    }, {
+      type: 'input',
+      name: 'description',
+      message: 'Describe your project?',
+      default: 'A simple yo generator'
     }];
 
     this.prompt(prompts, function (props) {
@@ -47,6 +52,15 @@ module.exports = yeoman.generators.Base.extend({
     this.fs.copy(
       this.templatePath('bowerrc'),
       this.destinationPath('.bowerrc')
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('_README.md'),
+      this.destinationPath('README.md'),
+      {
+        name: this.props.name,
+        description: this.props.description
+      }
     );
   },
 
