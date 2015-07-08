@@ -1,7 +1,7 @@
 {
   "name": "generator-starters",
-  "version": "0.0.0",
-  "description": "Yeoman generator",
+  "version": "0.1.0",
+  "description": "Starters is a Yeoman generator to remove some of the menial tasks you have to perform when setting up front-end projects.",
   "license": "MIT",
   "main": "app/index.js",
   "repository": "nouveller/generator-starters",

@@ -1,7 +1,6 @@
-# generator-starters [![Build Status](https://secure.travis-ci.org/nouveller/generator-starters.png?branch=master)](https://travis-ci.org/nouveller/generator-starters)
+# Starters [![Build Status](https://secure.travis-ci.org/nouveller/generator-starters.png?branch=master)](https://travis-ci.org/nouveller/generator-starters)
 
-> [Yeoman](http://yeoman.io) generator
-
+Starters is a [Yeoman](http://yeoman.io) generator to remove some of the menial tasks you have to perform when setting up front-end projects.
 
 ## Getting Started
 
