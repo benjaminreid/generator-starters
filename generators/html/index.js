@@ -16,6 +16,16 @@ module.exports = yeoman.generators.Base.extend({
       name: 'location',
       message: 'Where would you like to put the file?',
       default: 'public'
+    }, {
+      type: 'input',
+      name: 'lang',
+      message: 'What should the language of the page be set to?',
+      default: 'en'
+    }, {
+      type: 'input',
+      name: 'title',
+      message: 'Give your page a title',
+      default: 'My awesome website'
     }];
 
     this.prompt(prompts, function (props) {
