@@ -1,6 +1,10 @@
 var gulp = require('gulp');
-<% if (sass) { -%>
-var sass = require('gulp-sass');
+<% for(var i = 0; i < plugins.length; i++) { -%>
+var <%= plugins[i].variableName %> = require('<%= plugins[i].plugin %>');
+<% } -%>
+<% for(var i = 0; i < plugins.length; i++) { %>
+// example for <%= plugins[i].plugin %>
+<%- include('gulp-tasks/' + plugins[i].plugin); -%>
 <% } -%>
 
 gulp.task('default', function() {

@@ -2,6 +2,7 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var pluginNames = require('./helpers/plugin-names');
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function () {
@@ -33,10 +34,16 @@ module.exports = yeoman.generators.Base.extend({
       message: 'Would you like to use Gulp?',
       default: false
     }, {
-      type: 'confirm',
-      name: 'useSass',
-      message: 'Would you like to have Sass compilation?',
-      default: false,
+      type: 'checkbox',
+      name: 'gulpPlugins',
+      message: 'Would any of these Gulp plugins?',
+      choices: [
+        'gulp-sass',
+        'gulp-autoprefixer',
+        'gulp-concat',
+        'gulp-filter',
+        'main-bower-files',
+      ],
       when: function(answers) {
         return answers.gulp;
       }
@@ -85,7 +92,7 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.copyTpl(
         this.templatePath('_gulpfile.js'),
         this.destinationPath('gulpfile.js'),
-        { sass: this.props.useSass }
+        { plugins: pluginNames(this.props.gulpPlugins) }
       );
     }
   },
@@ -95,10 +102,7 @@ module.exports = yeoman.generators.Base.extend({
 
     if (this.props.gulp === true) {
       this.npmInstall(['gulp'], { saveDev: true });
-
-      if (this.props.useSass === true) {
-        this.npmInstall(['gulp-sass'], { saveDev: true });
-      }
+      this.npmInstall(this.props.gulpPlugins, { saveDev: true });
     }
   }
 });
