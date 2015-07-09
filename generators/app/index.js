@@ -39,7 +39,10 @@ module.exports = yeoman.generators.Base.extend({
       message: 'Would any of these Gulp plugins?',
       choices: [
         'gulp-sass',
-        'gulp-autoprefixer'
+        'gulp-autoprefixer',
+        'gulp-concat',
+        'gulp-filter',
+        'main-bower-files',
       ],
       when: function(answers) {
         return answers.gulp;
