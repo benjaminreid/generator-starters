@@ -1,49 +1,36 @@
 # Starters [![Build Status](https://secure.travis-ci.org/nouveller/generator-starters.png?branch=master)](https://travis-ci.org/nouveller/generator-starters)
 
-Starters is a [Yeoman](http://yeoman.io) generator to remove some of the menial tasks you have to perform when setting up front-end projects.
+Starters is a [Yeoman](http://yeoman.io) generator to remove some of the menial tasks you have to perform when setting up front-end projects. It's aim is to be as agnostic as possible.
 
 ## Getting Started
 
-### What is Yeoman?
-
-Trick question. It's not a thing. It's this guy:
-
-![](http://i.imgur.com/JHaAlBJ.png)
-
-Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
-
-Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
-
-```bash
-npm install -g yo
-```
-
-### Yeoman Generators
-
-Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
-
-To install generator-starters from npm, run:
+First, install the generator with `npm`.
 
 ```bash
 npm install -g generator-starters
 ```
 
-Finally, initiate the generator:
+Create yourself a new project folder and `cd` into it.
+
+```bash
+mkdir new-project && cd new-project
+```
+
+Now you're ready to kick things off, this will guide you through setting up your project.
 
 ```bash
 yo starters
 ```
 
-### Getting To Know Yeoman
+## What does Starters provide?
 
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
+Starters aims to remove the most common things you do at a start of a new project, for example:
 
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
+* Setting up your favourite build tools (Gulp is the only one currently supported, more coming soon or please do make a PR!)
+* Installing your commonly used components and tools through Bower and NPM (suggestions are welcome for any commonly used component you can think of)
+* Creating projects files from a `README.md` to a `.gitignore`
 
-
-## License
-
-MIT
+Nothing will be forced upon you, you'll be making all the decisions. You won't have to go back and delete unnecessary files or change where your Sass gets placed. Please do make an issue though if you think something is not quite right.
 
 ## TL;DR
 ![Starters](http://media.giphy.com/media/haBeggedmenEA/giphy.gif)
