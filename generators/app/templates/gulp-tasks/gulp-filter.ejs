@@ -1,0 +1,9 @@
+gulp.task('default', function () {
+  var filter = gulpFilter(['*', '!src/vendor']);
+
+  return gulp.src('src/*.js')
+    .pipe(filter)
+    .pipe(jscs())
+    .pipe(filter.restore())
+    .pipe(gulp.dest('dist'));
+});
