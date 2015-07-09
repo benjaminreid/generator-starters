@@ -27,6 +27,19 @@ module.exports = yeoman.generators.Base.extend({
       name: 'bowerDependencies',
       message: 'Would you like any of these dependencies?',
       choices: ['jquery', 'normalize.css']
+    }, {
+      type: 'confirm',
+      name: 'gulp',
+      message: 'Would you like to use Gulp?',
+      default: false
+    }, {
+      type: 'confirm',
+      name: 'useSass',
+      message: 'Would you like to have Sass compilation?',
+      default: false,
+      when: function(answers) {
+        return answers.gulp;
+      }
     }];
 
     this.prompt(prompts, function (props) {
@@ -67,9 +80,25 @@ module.exports = yeoman.generators.Base.extend({
         description: this.props.description
       }
     );
+
+    if (this.props.gulp === true) {
+      this.fs.copyTpl(
+        this.templatePath('_gulpfile.js'),
+        this.destinationPath('gulpfile.js'),
+        { sass: this.props.useSass }
+      );
+    }
   },
 
   install: function () {
     this.bowerInstall(this.props.bowerDependencies, { save: true });
+
+    if (this.props.gulp === true) {
+      this.npmInstall(['gulp'], { saveDev: true });
+
+      if (this.props.useSass === true) {
+        this.npmInstall(['gulp-sass'], { saveDev: true });
+      }
+    }
   }
 });
