@@ -2,6 +2,7 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var pluginNames = require('./helpers/plugin-names');
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function () {
@@ -88,7 +89,7 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.copyTpl(
         this.templatePath('_gulpfile.js'),
         this.destinationPath('gulpfile.js'),
-        { plugins: this.props.gulpPlugins }
+        { plugins: pluginNames(this.props.gulpPlugins) }
       );
     }
   },
