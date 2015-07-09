@@ -9,11 +9,10 @@ describe('starters:app', function () {
   before(function (done) {
     helpers.run(path.join(__dirname, '../generators/app'))
       .withOptions({ skipInstall: true })
-      .withPrompts({ someOption: true })
       .on('end', done);
   });
 
-  it('creates files', function () {
+  it('creates a basic set of files', function () {
     assert.file([
       'bower.json',
       'package.json',
@@ -22,19 +21,19 @@ describe('starters:app', function () {
       '.gitignore',
     ]);
   });
-});
 
-describe('starters:gulp', function () {
-  before(function (done) {
-    helpers.run(path.join(__dirname, '../generators/app'))
-      .withOptions({ skipInstall: true })
-      .withPrompts({ gulp: true })
-      .on('end', done);
-  });
+  describe('gulp is enabled', function() {
+    before(function (done) {
+      helpers.run(path.join(__dirname, '../generators/app'))
+        .withOptions({ skipInstall: true })
+        .withPrompts({ gulp: true })
+        .on('end', done);
+    });
 
-  it('creates a gulpfile', function () {
-    assert.file([
-      'gulpfile.js'
-    ]);
+    it ('creates a gulpfile', function() {
+      assert.file([
+        'gulpfile.js'
+      ]);
+    });
   });
 });
