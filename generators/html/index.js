@@ -35,9 +35,13 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   writing: function() {
-    this.fs.copy(
+    this.fs.copyTpl(
       this.templatePath('_index.html'),
-      this.destinationPath(this.props.location + '/index.html')
+      this.destinationPath(this.props.location + '/index.html'),
+      {
+        title: this.props.title,
+        lang: this.props.lang,
+      }
     );
   },
 
